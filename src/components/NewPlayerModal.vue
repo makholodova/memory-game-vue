@@ -6,7 +6,7 @@
           <h2 class="modal__title">New Player</h2>
         </div>
         <div class="modal__body">
-          <form @submit.prevent="handleSubmit" id="playerForm" class="form">
+          <form id="playerForm" class="form" @submit.prevent="handleSubmit">
             <div class="form__group">
               <input
                   id="floatingFirstName"
@@ -26,36 +26,35 @@
     </div>
   </div>
 </template>
+
 <script lang="ts" setup>
 import {ref} from "vue";
+import {usePlayerStore} from "@/store/playersStore";
 import {PlayerModel} from "@/models/PlayerModel";
+import {useRouter} from "vue-router";
+import {useTimerStore} from "@/store/timerStore";
 
 const emit = defineEmits(['close']);
 const playerName = ref('');
+const router = useRouter();
+
+const playerStore = usePlayerStore();
+const timerStore = useTimerStore();
 
 const closeModal = () => {
   emit('close');
 };
 
 const handleSubmit = (): void => {
- 
-    const playerId = Date.now().toString();
-    const player = new PlayerModel(playerId, playerName.value);
+  const playerId = Date.now().toString();
+  const newPlayer = new PlayerModel(playerId, playerName.value);
 
-    /* const matchMatchGame = new MatchMatchGame(player);*/
+  playerStore.addNewPlayer(newPlayer);
 
-    closeModal();
+  closeModal();
 
-    /*header.draw(true, this.matchMatchGame);
-    matchMatchGame.startGame()
-        .then(() => {
-          console.log('Game started successfully');
-        })
-        .catch((error) => {
-          console.error('Error starting game:', error);
-        });*/
-
-
+  router.push({path: '/game'});
+  timerStore.startTimer();
 };
 </script>
 <style lang="scss" scoped>
@@ -149,42 +148,5 @@ const handleSubmit = (): void => {
   }
 }
 
-.modal__close-btn {
-  font-size: 1.8rem;
-  left: 110px;
-  bottom: 70px;
-  color: #aaa;
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #333;
-  }
-}
-
-
-.button {
-  display: inline-block;
-  background-color: #ff79b0;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3ms;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
-
-  &:hover {
-    background-color: #e6679a;
-  }
-}
-
-.modal__button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 15px;
-}
 
 </style>

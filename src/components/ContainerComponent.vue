@@ -1,24 +1,11 @@
 ﻿<template>
   <div id="inner__container" class="container content">
-      <slot></slot>
+    <slot></slot>
   </div>
 </template>
 <script lang="ts" setup>
 </script>
-<style scoped lang="scss">
-.container {
-  width: 100%;
-  max-width: 980px;
-  padding: 0 40px;
-  margin: 0 auto;
-
-  @include tablets {
-    padding: 0 30px;
-  }
-  @include phones {
-    padding: 0 10px;
-  }
-}
+<style lang="scss" scoped>
 
 .content {
   /*padding-top: 20px;
