@@ -38,27 +38,6 @@ const openModal=()=>{
   color: #ff4f8b;
   text-shadow: 0 0 10px rgba(182, 117, 141, 0.8);
 }
-.button {
-  display: inline-block;
-  background-color: #ff79b0;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3ms;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px 0 rgba(0, 0, 0, 0.2);
-  &:hover {
-    background-color: #e6679a;
-  }
-}
-.start-game__button {
-  padding: 1rem 2rem;
-  font-size: 2rem;
-  border-radius: 45px;
-  transition: transform 0.2s;
 
-  &:hover {
-    transform: scale(1.05);
-  }
-}
 
 </style>
