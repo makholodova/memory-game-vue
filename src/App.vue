@@ -7,10 +7,6 @@ import ButtonStartGame from "@/components/ButtonStartGame.vue";
 </script>
 
 <template>
-  <HeaderComponent>
-    <HeaderLogo/>
-    <ButtonStartGame/>
-  </HeaderComponent>
   <RouterView/>
   <FooterComponent/>
 </template>

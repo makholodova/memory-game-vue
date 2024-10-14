@@ -19,12 +19,16 @@ export const useTimerStore = defineStore('timer', {
 			}, 1000);
 		},
 
+		pauseTimer(): void {
+			clearInterval(this.myInterval);
+			this.myInterval = undefined;
+		},
+
 		stopTimer(): void {
 			if (!this.isRunning) {
 				console.warn('Таймер уже остановлен.');
 				return;
 			}
-
 			clearInterval(this.myInterval);
 			this.myInterval = undefined;
 			this.isRunning = false;

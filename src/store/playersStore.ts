@@ -1,8 +1,8 @@
 ﻿import {defineStore} from "pinia";
 import type {IPlayer} from "@/models/IPlayer";
 import type {PlayerModel} from "@/models/PlayerModel";
-
-
+//перепесать н адругой синтаксис
+//result store?
 export const usePlayerStore = defineStore('player', {
 	state: () => ({
 		newPlayer: [] as PlayerModel[],

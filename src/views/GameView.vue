@@ -1,10 +1,14 @@
 <template>
+  <HeaderComponent>
+    <HeaderLogo/>
+    <ButtonStopGame/>
+  </HeaderComponent>
   <ContainerComponent>
     <GameInfo/>
     <BoardComponent/>
   </ContainerComponent>
-  <button id="btn-open-modal" class=" button start-game__button" type="button" @click="openModal">Play &#9658;</button>
-  <SuccessModal v-if="isModalVisible" :player="player" @close="isModalVisible=false"/>
+<!--  <button id="btn-open-modal" class=" button start-game__button" type="button" @click="openModal">Play &#9658;</button>
+  <SuccessModal v-if="isModalVisible" :player="player" @close="isModalVisible=false"/>-->
 
 </template>
 
@@ -17,16 +21,21 @@ import {ref} from "vue";
 import type {IPlayer} from "@/models/IPlayer";
 import {usePlayerStore} from "@/store/playersStore";
 import {useTimerStore} from "@/store/timerStore";
+import HeaderLogo from "@/components/HeaderLogo.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import ButtonStartGame from "@/components/ButtonStartGame.vue";
+import ButtonStopGame from "@/components/ButtonStopGame.vue";
 
 const playerStore = usePlayerStore();
-const timerStore = useTimerStore();
+/*const timerStore = useTimerStore();
 
 const isModalVisible = ref(false);
 
 const openModal = () => {
   timerStore.stopTimer();   //временно
   isModalVisible.value = true;
-}
+}*/
+/*
 
 const currentPlayer = playerStore.getLastPlayer();
 
@@ -39,6 +48,7 @@ const player: IPlayer = {
 }
 
 playerStore.addPlayer(player);
+*/
 
 
 </script>

@@ -1,44 +1,45 @@
 ﻿<template>
-  <div :id="card.id" :class="{ flipped: isFlipped }" class="card" @click="flipCard">
-    <div class="card__inner">
+  <div :id="card.id" :class="{ flipped: card.isFlip }" class="card " @click="flipCard">
+    <div class="card__inner ">
       <div class="card__front">
         <img :src="card.img_back" alt="img_back" class="card__img ">
       </div>
+
       <div class="card__back">
-        <img :alt="card.name.toLowerCase()" :src="card.img" class="card__img">
+        <img :alt="card.name.toLowerCase()" :src="card.img" class="card__img ">
+        <div v-if="card.isMaskVisible" :class="getMaskClass" class="card__mask"></div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type {CardModel} from "@/models/CardModel";
-import {ref} from "vue";
+import {computed} from "vue";
+import {useScoreStore} from "@/store/scoreStore";
 
 const props = defineProps<{
   card: CardModel;
 }>();
+const emit = defineEmits(['flip'])
+const scoreStore = useScoreStore();
 
-let isFlipped = ref<boolean>(false);
 
 const flipCard = (): void => {
-  isFlipped.value = true;
+  console.log('до',scoreStore.board);
+  if (!scoreStore.board && !props.card.isFlip) {
+    console.log(scoreStore.board);
+    props.card.isFlip = true;
+    emit('flip', props.card.id, props.card)
+  }
 }
-/*
-addMask(isCorrect: boolean): void {
-  const maskElement = document.getElementById(this.cardModel.id) as HTMLElement;
-  const mask = document.createElement('div');
-  mask.className = isCorrect ? 'card__mask--correct' : 'card__mask--incorrect';
-  maskElement.appendChild(mask);
-}*/
+
+const getMaskClass = computed(() => {
+  return props.card.isCorrect ? 'card__mask--correct' : 'card__mask--incorrect';
+});
 
 
-const unFlipCard = (): void => {
-  isFlipped.value = false;
-
-  /* const incorrectMask = document.querySelector(`#${this.cardModel.id} .card__mask--incorrect`);
-   if (incorrectMask) incorrectMask.remove();*/
-}
 </script>
 
 <style lang="scss" scoped>
@@ -99,7 +100,7 @@ const unFlipCard = (): void => {
   transform: rotateY(180deg);
 }
 
-.card__mask--correct, .card__mask--incorrect {
+.card__mask {
   position: absolute;
   top: 0;
   left: 0;

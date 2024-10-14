@@ -1,15 +1,12 @@
 ﻿<template>
-  <div id="score" class="score-display">Score: {{ score }}
+  <div id="score" class="score-display">Score: {{ scoreStore.score }}
   </div>
 </template>[
 <script lang="ts" setup>
 import {ref} from "vue";
+import {useScoreStore} from "@/store/scoreStore";
 
-let score = ref<number>(0);
-
-const increaseScore = (): void => {
-  score.value++;
-}
+const scoreStore= useScoreStore();
 </script>
 
 <style scoped lang="scss">
