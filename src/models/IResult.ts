@@ -1,4 +1,4 @@
-﻿export interface IPlayer {
+﻿export interface IResult {
 	id: string;
 	name: string;
 	score: number;

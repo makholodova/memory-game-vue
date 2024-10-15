@@ -1,24 +1,25 @@
 ﻿<template>
-  <div class="players__item">
-    <h4 class="players__name">{{ player.name }}</h4>
-    <div class="players__results">
-      <p class="players__score"> Score: <span>{{ player.score }}</span></p>
-      <p class="players__time"> Time: <span>{{ player.time }}</span></p>
+  <div class="results__item">
+    <h4 class="results__name">{{ result.name }}</h4>
+    <div class="results">
+      <p class="results__score"> Score: <span>{{ result.score }}</span></p>
+      <p class="results__time"> Time: <span>{{ result.time }}</span></p>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type {IPlayer} from "@/models/IPlayer";
+
+import type {IResult} from "@/models/IResult";
 
 defineProps<{
-  player: IPlayer
+  result: IResult;
 }>()
 
 </script>
 <style lang="scss" scoped>
 
-.players__item {
+.results__item {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -28,11 +29,11 @@ defineProps<{
   color: rgba(92, 65, 73, 0.6);
 }
 
-.players__name {
+.results__name {
   color: #454343;
 }
 
-.players__results {
+.results {
   display: flex;
 
   gap: 20px;

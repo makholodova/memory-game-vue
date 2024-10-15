@@ -17,21 +17,21 @@
 <script lang="ts" setup>
 import type {CardModel} from "@/models/CardModel";
 import {computed} from "vue";
-import {useScoreStore} from "@/store/scoreStore";
+import {useGameStore} from "@/store/gameStore";
 
 const props = defineProps<{
   card: CardModel;
 }>();
 const emit = defineEmits(['flip'])
-const scoreStore = useScoreStore();
+const gameStore = useGameStore();
 
 
 const flipCard = (): void => {
-  console.log('до',scoreStore.board);
-  if (!scoreStore.board && !props.card.isFlip) {
-    console.log(scoreStore.board);
+  console.log('до', gameStore.board);
+  if (!gameStore.board && !props.card.isFlip) {
+    console.log(gameStore.board);
     props.card.isFlip = true;
-    emit('flip', props.card.id, props.card)
+    emit('flip', props.card)
   }
 }
 

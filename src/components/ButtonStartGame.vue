@@ -5,15 +5,15 @@
 <script lang="ts" setup>
 import {useRouter} from "vue-router";
 import {useTimerStore} from "@/store/timerStore";
-import {useScoreStore} from "@/store/scoreStore";
+import {useGameStore} from "@/store/gameStore";
 
 const timerStore = useTimerStore();
-const scoreStore= useScoreStore();
+const scoreStore = useGameStore();
 
 const router = useRouter();
 const startGame = () => {
   timerStore.stopTimer();
-  scoreStore.score=0;
+  scoreStore.score = 0;
   router.push({path: '/'});
 }
 

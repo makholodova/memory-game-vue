@@ -7,8 +7,7 @@
         @flip="onFlipCard"
     />
   </div>
-  <!--  <button id="btn-open-modal" class=" button start-game__button" type="button" @click="openModal">Play &#9658;</button>-->
-  <SuccessModal v-if="isModalVisible" :player="player" @close="isModalVisible=false"/>
+  <SuccessModal v-if="isModalVisible" :result="result" @close="isModalVisible=false"/>
 </template>
 
 <script lang="ts" setup>
@@ -20,9 +19,9 @@ import type {CardDb} from "@/models/CardDb";
 import {CardModel} from "@/models/CardModel";
 import {useTimerStore} from "@/store/timerStore";
 import SuccessModal from "@/components/SuccessModal.vue";
-import {usePlayerStore} from "@/store/playersStore";
-import type {IPlayer} from "@/models/IPlayer";
-import {useScoreStore} from "@/store/scoreStore";
+import {useGameStore} from "@/store/gameStore";
+import type {IResult} from "@/models/IResult";
+import {useResultsStore} from "@/store/resultsStore";
 
 const cardsApiClient = new CardsApiClient();
 const cardsGenerator = new CardsGenerator();
@@ -33,25 +32,23 @@ const uniqueCards = ref<CardDb[]>([]);
 const cardArray = reactive<CardModel[]>([]);
 const firstCard = ref<CardModel | null>(null);
 const secondCard = ref<CardModel | null>(null);
-
-/*const lockBoard = ref<boolean>(false)*/
-
 let openPairsCount: number = 0;
 const pairsCount: number = 2;
 
 
-const onFlipCard = (cardId: string, card: CardModel) => {
+const onFlipCard = (card: CardModel) => {
   flipCard(card);
 }
 
 const timerStore = useTimerStore();
-const playerStore = usePlayerStore();
-const scoreStore = useScoreStore();
+const gameStore = useGameStore();
+const resultsStore = useResultsStore();
 
-const currentPlayer = playerStore.getLastPlayer();
+const currentPlayer = gameStore.getLastPlayer();
 const isModalVisible = ref(false);
 
-const player = reactive<IPlayer>({
+
+const result = reactive<IResult>({
   id: '',
   name: '',
   score: 0,
@@ -60,15 +57,14 @@ const player = reactive<IPlayer>({
 
 const onWinGame = () => {
 
-  player.id = currentPlayer.id;
-  player.name = currentPlayer.name;
-  player.score = scoreStore.score;
-  player.time = timerStore.formatTime();
+  result.id = currentPlayer.id;
+  result.name = currentPlayer.name;
+  result.score = gameStore.score;
+  result.time = timerStore.formatTime();
 
 
-  playerStore.addPlayer(player);
+  resultsStore.addResult(result);
   openModal();
-
 }
 
 
@@ -77,10 +73,8 @@ const openModal = () => {
   isModalVisible.value = true;
 }
 
-
 const flipCard = (card22: CardModel): void => {
-  /*if (lockBoard.value) return;*/
-  if (scoreStore.board) return;
+  if (gameStore.board) return;
 
   const card = card22;
 
@@ -88,16 +82,14 @@ const flipCard = (card22: CardModel): void => {
     firstCard.value = card;
   } else {
     secondCard.value = card;
-    /*lockBoard.value = true;*/
-    scoreStore.board = true;
+    gameStore.board = true;
     checkForMatch();
   }
-  scoreStore.increase();
+  gameStore.increaseScore();
 }
 
 const checkForMatch = (): void => {
   if (!firstCard.value || !secondCard.value) return;
-  //lockBoard.value = true;
   if (firstCard.value && secondCard.value) {
     const isMatch = firstCard.value.dbId === secondCard.value.dbId;
     setTimeout(() => {
@@ -105,7 +97,6 @@ const checkForMatch = (): void => {
         handleMatch();
         openPairsCount++;
         if (openPairsCount === pairsCount) {
-          //console.log("WIN")
           onWinGame();
         }
         resetBoard();
@@ -149,19 +140,8 @@ const handleMismatch = (): void => {
 const resetBoard = (): void => {
   firstCard.value = null;
   secondCard.value = null;
-  scoreStore.board = false;
-  /*lockBoard.value = false;*/
+  gameStore.board = false;
 }
-
-
-/*const getCard = (id: string): CardModel => {
-  const c = cardArray.find(x => x.id === id);
-  if (c) {
-    return c
-  }
-
-  throw "Карточка не найдена";
-}*/
 
 onMounted(() => {
   loadCards();

@@ -6,7 +6,7 @@
           <h2 class="modal__title">Congratulations!</h2>
         </div>
         <div class="modal__body">
-          <p>You successfully found all matches!<br> Your score: {{ player.score }}. <br>Time: {{ player.time }} minutes.</p>
+          <p>You successfully found all matches!<br> Your score: {{ result.score }}. <br>Time: {{ result.time }} minutes.</p>
         </div>
         <div class="modal__footer">
           <button id="btn-show-results" class="button modal__button" type="button" @click="showResults">OK</button>
@@ -18,12 +18,11 @@
 
 <script lang="ts" setup>
 
-import type {IPlayer} from "@/models/IPlayer";
 import {useRouter} from "vue-router";
-import {onMounted} from "vue";
+import type {IResult} from "@/models/IResult";
 
-const props = defineProps<{
-  player: IPlayer;
+defineProps<{
+  result: IResult;
 }>();
 const router = useRouter();
 

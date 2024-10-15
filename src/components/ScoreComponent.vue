@@ -1,15 +1,15 @@
 ﻿<template>
-  <div id="score" class="score-display">Score: {{ scoreStore.score }}
+  <div id="score" class="score-display">Score: {{ gameStore.score }}
   </div>
 </template>[
 <script lang="ts" setup>
-import {ref} from "vue";
-import {useScoreStore} from "@/store/scoreStore";
 
-const scoreStore= useScoreStore();
+import {useGameStore} from "@/store/gameStore";
+
+const gameStore = useGameStore();
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .score-display {
   line-height: 1rem;
   background-color: rgba(255, 121, 176, 0.3);

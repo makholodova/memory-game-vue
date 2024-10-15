@@ -1,6 +1,5 @@
 ﻿import {defineStore} from "pinia";
 
-
 export const useTimerStore = defineStore('timer', {
 	state: () => ({
 		timeInSeconds: 0,
@@ -42,8 +41,6 @@ export const useTimerStore = defineStore('timer', {
 			const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
 			return `${formattedMinutes}:${formattedSeconds}`;
 		}
-
-
 	},
 });
 

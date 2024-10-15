@@ -29,16 +29,16 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
-import {usePlayerStore} from "@/store/playersStore";
 import {PlayerModel} from "@/models/PlayerModel";
 import {useRouter} from "vue-router";
 import {useTimerStore} from "@/store/timerStore";
+import {useGameStore} from "@/store/gameStore";
 
 const emit = defineEmits(['close']);
 const playerName = ref('');
 const router = useRouter();
 
-const playerStore = usePlayerStore();
+const gameStore = useGameStore();
 const timerStore = useTimerStore();
 
 const closeModal = () => {
@@ -49,7 +49,7 @@ const handleSubmit = (): void => {
   const playerId = Date.now().toString();
   const newPlayer = new PlayerModel(playerId, playerName.value);
 
-  playerStore.addNewPlayer(newPlayer);
+  gameStore.addPlayer(newPlayer)
 
   closeModal();
 

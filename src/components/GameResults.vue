@@ -1,30 +1,28 @@
 ﻿<template>
   <h2 class="players__title">Best players </h2>
   <div class="players__list">
-    <PlayerComponent
-        v-for="player in players"
-        :key="player.id"
-        :player="player"
+    <ResultComponent
+        v-for="result in results"
+        :key="result.id"
+        :result="result"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import PlayerComponent from "@/components/PlayerComponent.vue";
-import {usePlayerStore} from "@/store/playersStore";
 import {onMounted, ref} from "vue";
-import type {IPlayer} from "@/models/IPlayer";
+import type {IResult} from "@/models/IResult";
+import {useResultsStore} from "@/store/resultsStore";
+import ResultComponent from "@/components/ResultComponent.vue";
 
-const playerStore = usePlayerStore();
+const resultsStore = useResultsStore();
 
-const players = ref<IPlayer[]>([])
+const results = ref<IResult[]>([])
 
 onMounted(() => {
-  playerStore.initPlayers();  
-  players.value = playerStore.getLastPlayers(); 
+  resultsStore.initResults()
+  results.value = resultsStore.getLastTenResults()
 });
-
-
 </script>
 
 <style lang="scss" scoped>
