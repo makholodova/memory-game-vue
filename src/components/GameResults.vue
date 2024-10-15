@@ -11,12 +11,11 @@
 
 <script lang="ts" setup>
 import {onMounted, ref} from "vue";
-import type {IResult} from "@/models/IResult";
 import {useResultsStore} from "@/store/resultsStore";
 import ResultComponent from "@/components/ResultComponent.vue";
+import type {IResult} from "@/models/IResult";
 
 const resultsStore = useResultsStore();
-
 const results = ref<IResult[]>([])
 
 onMounted(() => {

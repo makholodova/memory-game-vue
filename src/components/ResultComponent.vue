@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-
 import type {IResult} from "@/models/IResult";
 
 defineProps<{
@@ -17,8 +16,8 @@ defineProps<{
 }>()
 
 </script>
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
 .results__item {
   display: flex;
   justify-content: space-between;
@@ -35,8 +34,6 @@ defineProps<{
 
 .results {
   display: flex;
-
   gap: 20px;
-
 }
 </style>

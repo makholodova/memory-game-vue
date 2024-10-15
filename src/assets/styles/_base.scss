@@ -1,4 +1,37 @@
-﻿.container {
+﻿@import './normalize';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Rowdies:wght@300&family=Ubuntu+Mono&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+
+  background: rgb(249, 236, 222);
+  background: radial-gradient(circle, rgb(251, 194, 235) 0%, rgb(166, 193, 238) 78%);
+}
+
+body.lock-scroll {
+  overflow: hidden;
+}
+
+#app {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+
+.container {
   width: 100%;
   max-width: 980px;
   padding: 0 40px;
@@ -11,3 +44,4 @@
     padding: 0 10px;
   }
 }
+

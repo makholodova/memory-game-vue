@@ -1,8 +1,4 @@
-﻿<script lang="ts" setup>
-
-</script>
-
-<template>
+﻿<template>
   <footer class="footer">
     <div class="footer__container container">
       <a class="footer__link" href='https://github.com/makholodova' target="_blank"> <!--/*link*/-->
@@ -16,6 +12,9 @@
     </div>
   </footer>
 </template>
+
+<script lang="ts" setup>
+</script>
 
 <style lang="scss" scoped>
 .footer {
@@ -55,6 +54,4 @@
 .footer p {
   margin: 0;
 }
-
-
 </style>

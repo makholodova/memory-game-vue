@@ -29,21 +29,18 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
-import {PlayerModel} from "@/models/PlayerModel";
 import {useRouter} from "vue-router";
 import {useTimerStore} from "@/store/timerStore";
 import {useGameStore} from "@/store/gameStore";
+import {PlayerModel} from "@/models/PlayerModel";
 
 const emit = defineEmits(['close']);
-const playerName = ref('');
-const router = useRouter();
 
+const router = useRouter();
 const gameStore = useGameStore();
 const timerStore = useTimerStore();
 
-const closeModal = () => {
-  emit('close');
-};
+const playerName = ref('');
 
 const handleSubmit = (): void => {
   const playerId = Date.now().toString();
@@ -52,13 +49,17 @@ const handleSubmit = (): void => {
   gameStore.addPlayer(newPlayer)
 
   closeModal();
-
   router.push({path: '/game'});
   timerStore.startTimer();
 };
-</script>
-<style lang="scss" scoped>
 
+const closeModal = () => {
+  emit('close');
+};
+
+</script>
+
+<style lang="scss" scoped>
 .modal {
   position: fixed;
   top: 0;
@@ -98,7 +99,7 @@ const handleSubmit = (): void => {
 
 .modal__title {
   font-weight: 600;
-  color: #ff4f8b; /* Ярко-розовый */
+  color: #ff4f8b;
 }
 
 .modal__body {
@@ -121,7 +122,6 @@ const handleSubmit = (): void => {
 }
 
 .form__input {
-  /* // width: 100%;*/
   padding: 0.5rem;
   border: 1px solid #ced4da;
   font-size: 1rem;
@@ -147,6 +147,4 @@ const handleSubmit = (): void => {
     box-shadow: 0px 0px 7px 0.5px rgba(120, 120, 120, 0.8);
   }
 }
-
-
 </style>

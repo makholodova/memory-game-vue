@@ -2,7 +2,6 @@
   <div class="header__logo">Memory Game</div>
 </template>
 <script lang="ts" setup>
-
 </script>
 
 <style lang="scss" scoped>

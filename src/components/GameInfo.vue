@@ -4,8 +4,8 @@
     <TimerComponent/>
   </div>
 </template>
-<script lang="ts" setup>
 
+<script lang="ts" setup>
 import ScoreComponent from "@/components/ScoreComponent.vue";
 import TimerComponent from "@/components/TimerComponent.vue";
 </script>

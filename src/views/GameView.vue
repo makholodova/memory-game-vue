@@ -17,7 +17,3 @@ import HeaderLogo from "@/components/HeaderLogo.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ButtonStopGame from "@/components/ButtonStopGame.vue";
 </script>
-
-<style lang="scss">
-
-</style>

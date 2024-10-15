@@ -73,7 +73,7 @@ const showResults = () => {
 
 .modal__title {
   font-weight: 600;
-  color: #ff4f8b; /* Ярко-розовый */
+  color: #ff4f8b;
 }
 
 .modal__body {
@@ -84,5 +84,4 @@ const showResults = () => {
 .modal__footer {
   padding: 0 1.5rem 1rem 1.5rem;
 }
-
 </style>

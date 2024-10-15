@@ -1,7 +1,5 @@
 ﻿<template>
   <div class="timer-display">Time: {{ timerStore.formatTime() }}</div>
-<!--    <button @click="startTimer">Start</button>
-    <button @click="stopTimer">Stop</button>-->
 </template>
 
 <script lang="ts" setup>

@@ -1,5 +1,5 @@
 import type {CardDb} from "@/models/CardDb";
-import  {CardModel} from "@/models/CardModel";
+import {CardModel} from "@/models/CardModel";
 
 export class CardsGenerator {
 	generateCardsArray(uniqueCards: CardDb[], length: number = 12): CardModel[] {
@@ -26,7 +26,6 @@ export class CardsGenerator {
 		}
 		return shuffled;
 	}
-	
 }
 
 

@@ -9,11 +9,5 @@ import FooterComponent from "@/components/FooterComponent.vue";
 </template>
 
 <style lang="scss">
-/*header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-
-}*/
+@import "assets/styles/normalize";
 </style>

@@ -1,36 +1,32 @@
 ﻿<template>
-  <div :id="card.id" :class="{ flipped: card.isFlip }" class="card " @click="flipCard">
+  <div :id="card.id" :class="{ flipped:card.isFlip }" class="card " @click="flipCard">
     <div class="card__inner ">
       <div class="card__front">
         <img :src="card.img_back" alt="img_back" class="card__img ">
       </div>
-
       <div class="card__back">
         <img :alt="card.name.toLowerCase()" :src="card.img" class="card__img ">
         <div v-if="card.isMaskVisible" :class="getMaskClass" class="card__mask"></div>
       </div>
-
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type {CardModel} from "@/models/CardModel";
 import {computed} from "vue";
 import {useGameStore} from "@/store/gameStore";
+import {CardModel} from "@/models/CardModel";
 
 const props = defineProps<{
   card: CardModel;
 }>();
-const emit = defineEmits(['flip'])
+const emit = defineEmits(['flip']);
+
 const gameStore = useGameStore();
 
-
 const flipCard = (): void => {
-  console.log('до', gameStore.board);
   if (!gameStore.board && !props.card.isFlip) {
-    console.log(gameStore.board);
-    props.card.isFlip = true;
+    /* props.card.isFlip = true;*/
     emit('flip', props.card)
   }
 }
@@ -38,8 +34,6 @@ const flipCard = (): void => {
 const getMaskClass = computed(() => {
   return props.card.isCorrect ? 'card__mask--correct' : 'card__mask--incorrect';
 });
-
-
 </script>
 
 <style lang="scss" scoped>
